@@ -3,14 +3,10 @@ import './style.css'
 import App from './App.vue'
 import router from './router'
 import './assets/css/tailwind.css'
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { initializeApp } from "firebase/app";
+import { getMessaging, getToken, onMessage} from "firebase/messaging";
+
 const firebaseConfig = {
   apiKey: "AIzaSyBWgdieB9eOQ-9aKOw91nRy7-GvgOoImTQ",
   authDomain: "notif-aesir.firebaseapp.com",
@@ -23,7 +19,21 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
+
+// Initialize Firebase Cloud Messaging and get a reference to the service
+const messaging = getMessaging(firebaseApp);
+getToken(messaging, { vapidKey: 'BOWwe9WU7P2arMlr0HVYCcFCpZLI6dnw7wIpya6hBHKOVqOUjw_Wwog69ECNzm1CR_gshHzYQrD4wgGXf6n5U30'}).then((currentToken) => {
+  if (currentToken) {
+    console.log("Success!");
+  } else {
+    console.log('No registration token available. Request permission to generate one.');
+  }
+}).catch((err) => {
+  console.log('An error occurred while retrieving token. ', err);
+});
+
+// Initialize Vue
 const vueApp = createApp(App)
 
 vueApp.use(router)

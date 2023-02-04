@@ -54,11 +54,13 @@ function handleSignOut() {
             </router-link>
           </li>
           <li class="inline-block align-middle max-w-[calc(100%-0.5rem)] m-[0.25rem]">
-            <button @click="handleSignOut" v-if="isLoggedIn" class="flex w-[8.25rem] h-[2.25rem] leading-[2.25rem] pr-[1.125rem] pt-0 uppercase text-[0.725rem] tracking-[.15rem] pl-[calc(0.15rem+1.125rem)] font-normal rounded-[1.625rem] bg-[#8f0034] text-[#FFFFFF] hover:bg-[#8D90B0] !important max-w-full cursor-pointer whitespace-nowrap items-center justify-center align-middle">Sign Out</button>
+            <button @click="handleSignOut" v-if="isLoggedIn"
+              class="flex w-[8.25rem] h-[2.25rem] leading-[2.25rem] pr-[1.125rem] pt-0 uppercase text-[0.725rem] tracking-[.15rem] pl-[calc(0.15rem+1.125rem)] font-normal rounded-[1.625rem] bg-[#8f0034] text-[#FFFFFF] hover:bg-[#8D90B0] !important max-w-full cursor-pointer whitespace-nowrap items-center justify-center align-middle">Sign
+              Out</button>
           </li>
         </ul>
       </nav>
-      <router-view class="mt-4"/>
+      <router-view class="mt-4" />
     </div>
   </div>
 </template>
