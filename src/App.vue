@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
+import { Auth, getAuth, onAuthStateChanged, signOut } from "firebase/auth"
 import router from './router';
 
 const isLoggedIn = ref(false);
 
-let auth;
+let auth: Auth;
 onMounted(() => {
   auth = getAuth();
   onAuthStateChanged(auth, (user) => {
@@ -65,6 +65,4 @@ function handleSignOut() {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

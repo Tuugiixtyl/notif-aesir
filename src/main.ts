@@ -33,6 +33,27 @@ getToken(messaging, { vapidKey: 'BOWwe9WU7P2arMlr0HVYCcFCpZLI6dnw7wIpya6hBHKOVqO
   console.log('An error occurred while retrieving token. ', err);
 });
 
+// Handle incoming messages
+onMessage(messaging, (payload) => {
+  console.log('Message received. ', payload);
+
+  // Show a notification
+  const notificationTitle = payload.notification?.title ?? 'Notification';
+  const notificationOptions: NotificationOptions = {
+    body: payload.notification?.body,
+    icon: '/firebase-logo.png'
+  };
+  if (Notification.permission === 'granted') {
+    new Notification(notificationTitle, notificationOptions);
+  } else if (Notification.permission !== 'denied') {
+    Notification.requestPermission().then((permission) => {
+      if (permission === 'granted') {
+        new Notification(notificationTitle, notificationOptions);
+      }
+    });
+  }
+})
+
 // Initialize Vue
 const vueApp = createApp(App)
 
